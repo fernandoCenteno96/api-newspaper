@@ -17,14 +17,14 @@ class CreatePostsTable extends Migration
             $table->Increments('id');
             $table->string('title');
             $table->text('content');
-            $table->string('image');
+            $table->string('image')->nullable();
 
             
-            $table->unsignedInteger('users_id'); 
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('user_id'); 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
 
-            $table->unsignedInteger('categorys_id');
-            $table->foreign('categorys_id')->references('id')->on('categorys')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categorys')->onDelete('restrict')->onUpdate('restrict');
 
             $table->timestamps();
         });

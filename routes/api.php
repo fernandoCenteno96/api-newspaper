@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +17,8 @@ use Illuminate\Http\Request;
 
 Route::resource('Category', 'CategoryController')->except([ 'create', 'edit']);
 Route::resource('User', 'UserController')->except([ 'create', 'edit']);
-Route::resource('Post', 'PostController')->except([ 'create', 'edit']);
+Route::post('User/login', 'UserController@login');
+Route::post('User/Upload','UserController@upload')->middleware(\App\Http\Middleware\ApiAuthMiddleware::class);
 
+
+Route::resource('Post', 'PostController')->except([ 'create', 'edit']);
